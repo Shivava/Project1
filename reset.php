@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- Furkan ucar OITAOO8B -->
+
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -19,6 +20,3 @@
 	</form>
 </body>
 </html>
-
-
-<!-- Furkan ucar OITAOO8B -->

@@ -1,8 +1,8 @@
+<!-- Furkan ucar OITAOO8B -->
+
 <form id='login' action='login.php' method='post' accept-charset='UTF-8'>
 	<fieldset >
 		<legend>Login</legend>
-		<input type='hidden' name='submitted' id='submitted' value='1'/>
-
 		<label for='username' >Username*:</label>
 		<input type='text' name='username' id='username'  maxlength="50" />
 
@@ -21,6 +21,3 @@
   		Reset Password? <a href="reset.php">Reset</a>
   	</p>
 </form>
-
-
-<!-- Furkan ucar OITAOO8B -->

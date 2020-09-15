@@ -1,7 +1,8 @@
+<!-- Furkan ucar OITAOO8B -->
+
 <html>
 <head>
   <title>Registration system PHP and MySQL</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
   <div class="header">
@@ -34,5 +35,3 @@
   </form>
 </body>
 </html>
-
-<!-- Furkan ucar OITAOO8B -->
