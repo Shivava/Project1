@@ -3,16 +3,14 @@
 <html lang="en" dir="ltr">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>login pagina</title>
 	</head>
 	<body>
 		<form id='login' action='login.php' method='post' accept-charset='UTF-8'>
 			<fieldset >
 				<legend>Login</legend>
-				<label for='username' >Username*:</label>
-				<input type='text' name='username' id='username'/>
-				<label for='password' >Password*:</label>
-				<input type='password' name='password' id='password'/>
+				<input type="text" name="uname" placeholder="Username" required/>
+				<input type="password" name="pword" placeholder="Password" required/>
 				<input type='submit' name='Submit' value='Submit' />
 			</fieldset>
 		  	<p>

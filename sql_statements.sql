@@ -1,20 +1,20 @@
 -- Gemaakt door Furkan Uçar OITAOO8B
 -- tabel account aanmaken.
-create table account(
-    id int not null AUTO_INCREMENT,
-    email varchar(250) not null UNIQUE,
-    password varchar(250) not null,
-    primary key(id)
+CREATE TABLE account(
+    id INT NOT NULL AUTO_INCREMENT,
+    email VARCHAR(250) NOT NULL UNIQUE,
+    password VARCHAR(250) NOT NULL,
+    PRIMARY KEY(id)
 );
 
 -- tabel persoon aanmaken.
-create table persoon(
-    id int not null AUTO_INCREMENT,
-    account_id int NOT NULL,
-    username varchar(250) NOT NULL,
-    firstname varchar(250) NOT NULL,
-    middlename varchar(250),
-    lastname varchar(250) NOT NULL,
+CREATE TABLE persoon(
+    id INT NOT NULL AUTO_INCREMENT,
+    account_id INT NOT NULL,
+    username VARCHAR(250) NOT NULL,
+    firstname VARCHAR(250) NOT NULL,
+    middlename VARCHAR(250),
+    lastname VARCHAR(250) NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (account_id) REFERENCES account(id)
 );
