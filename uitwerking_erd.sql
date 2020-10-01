@@ -3,7 +3,7 @@ CREATE TABLE users(
     username VARCHAR(255) NOT NULL,
     created_at DATETIME,
     updated_at DATETIME,
-    PRIMARY KEY(id),
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE authors(
@@ -12,7 +12,7 @@ CREATE TABLE authors(
     last_name VARCHAR(255) NOT NULL,
     created_at DATETIME,
     updated_at DATETIME,
-    PRIMARY KEY(id),
+    PRIMARY KEY(id)
 );
 
 CREATE TABLE books(
@@ -24,7 +24,7 @@ CREATE TABLE books(
     created_at DATETIME,
     updated_at DATETIME,
     PRIMARY KEY(id),
-    FOREIGN KEY(author_id) REFERENCES authors(id),
+    FOREIGN KEY(author_id) REFERENCES authors(id)
 );
 
 CREATE TABLE favourites(
@@ -35,5 +35,5 @@ CREATE TABLE favourites(
     updated_at DATETIME,
     PRIMARY KEY(id),
     FOREIGN KEY(user_id) REFERENCES users(id),
-    FOREIGN KEY(book_id) REFERENCES books(id),
+    FOREIGN KEY(book_id) REFERENCES books(id)
 );
