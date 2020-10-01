@@ -3,21 +3,41 @@
 
 include 'database.php';
 
-$db = new database('localhost', 'root', '', 'project1', 'utf8');
+  // maak een array met alle name attributes
+  $fields = [
+    	"uname",
+      "fname",
+      "lname",
+      "pwd",
+      "email"
+  ];
 
+  // ariabele met default boolean false value
+  $error = false;
 
-//if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // loop all name attributes of input fields
+  foreach ($fields as $fieldname) {
+      // check whether field has been set. If not, make sure error is true
+      if(!isset($_POST[$fieldname]) || empty($_POST[$fieldname])){
+        // echo "Field $fieldname has not been set or empty";
+        $error = true;
+      }
+  }
 
-  $username = $_POST['uname'];
-  $firstname = $_POST['fname'];
-  $middlename = $_POST['mname'];
-  $lastname = $_POST['lname'];
-  $password =$_POST['pwd'];
-  $email = $_POST['email'];
+  // in case of field values, proceed, execute insert
+  if(!$error){
+    $username = $_POST['uname'];
+    $firstname = $_POST['fname'];
+    $middlename = $_POST['mname'];
+    $lastname = $_POST['lname'];
+    $password =$_POST['pwd'];
+    $email = $_POST['email'];
 
-  $db->insert($username, $firstname, $middlename, $lastname, $password, $email);
-//}
+    $db = new database('localhost', 'root', '', 'project1', 'utf8');
+    $db->insert($username, $firstname, $middlename, $lastname, $password, $email);
+  }
 
+  header("location:login.php");
 
  ?>
 

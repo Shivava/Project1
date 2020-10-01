@@ -57,7 +57,7 @@ class database{
       $hashed_password =  password_hash($pass, PASSWORD_DEFAULT);
 
       // execute de statement (deze maakt de db changes)
-      $statement->execute(['email'=>$email, 'password'=>$pass]);
+      $statement->execute(['email'=>$email, 'password'=>$hashed_password]);
 
       // haalt de laatst toegevoegde id op uit de db
       $account_id = $this->pdo->lastInsertId();
