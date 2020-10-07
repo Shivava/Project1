@@ -2,6 +2,9 @@
 <?php
 
 include 'database.php';
+include 'HelperFunctions.php';
+
+if(isset($_POST['submit'])){
 
   // maak een array met alle name attributes
   $fields = [
@@ -12,20 +15,11 @@ include 'database.php';
       "email"
   ];
 
-  // ariabele met default boolean false value
-  $error = false;
-
-  // loop all name attributes of input fields
-  foreach ($fields as $fieldname) {
-      // check whether field has been set. If not, make sure error is true
-      if(!isset($_POST[$fieldname]) || empty($_POST[$fieldname])){
-        // echo "Field $fieldname has not been set or empty";
-        $error = true;
-      }
-  }
+$obj = new HelperFunctions();
+$no_error = $obj->has_provided_input_for_required_fields($fields);
 
   // in case of field values, proceed, execute insert
-  if(!$error){
+  if($no_error){
     $username = $_POST['uname'];
     $firstname = $_POST['fname'];
     $middlename = $_POST['mname'];
@@ -34,12 +28,10 @@ include 'database.php';
     $email = $_POST['email'];
 
     $db = new database('localhost', 'root', '', 'project1', 'utf8');
-    $db->insert($username, $firstname, $middlename, $lastname, $password, $email);
-  }
-
-  header("location:login.php");
-
- ?>
+    $db->create_or_update_user($username, $firstname, $middlename, $lastname, $password, $email);
+    }
+}
+?>
 
 <html>
   <head>
@@ -58,7 +50,7 @@ include 'database.php';
         <input type="email" name="email" placeholder="E-mail" required/>
         <input type="password" name="pwd" placeholder="Wachtwoord" required/>
         <input type="password" name="repeatpwd" placeholder="Herhaal wachtwoord" required/>
-        <input type="submit" value"Sign up!"/>
+        <input type="submit" name='submit' value"Sign up!"/>
       </fieldset>
       <a href="login.php">Ik heb al een account. Login!</a>
     </form>
