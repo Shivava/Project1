@@ -2,34 +2,28 @@
 <?php
 
 include 'database.php';
+include 'helperfunctions.php';
 
+if($_POST['submit']){
   // maak een array met alle name attributes
   $fields = [
     	"uname",
-      "pwd"
+      "pword"
   ];
 
-  // ariabele met default boolean false value
-  $error = false;
-
-  // loop all name attributes of input fields
-  foreach ($fields as $fieldname) {
-      // check whether field has been set. If not, make sure error is true
-      if(!isset($_POST[$fieldname]) || empty($_POST[$fieldname])){
-        // echo "Field $fieldname has not been set or empty";
-        $error = true;
-      }
-  }
+$obj = new HelperFunctions();
+$no_error = $obj->has_provided_input_for_required_fields($fields);
 
   // in case of field values, proceed, execute insert
-  if(!$error){
-    $username = $_POST['uname'];
-    $password =$_POST['pwd'];
+if($no_error){
+  $username = $_POST['uname'];
+  $password = $_POST['pword'];
 
+  $db = new database('localhost', 'root', '', 'project1', 'utf8');
+  $db->authenticate_user($username, $password);
+}
+}
 
-    $db = new database('localhost', 'root', '', 'project1', 'utf8');
-    $db->authenticate_user($username, $password);
-  }
  ?>
 
 
@@ -44,7 +38,7 @@ include 'database.php';
 				<legend>Login</legend>
 				<input type="text" name="uname" placeholder="Username" required/>
 				<input type="password" name="pword" placeholder="Password" required/>
-				<input type='submit' name='Submit' value='Submit' />
+				<input type='submit' name="submit" value='submit' />
 			</fieldset>
 		  	<p>
 		  		Not a member? <a href="register.php">Sign Up</a>

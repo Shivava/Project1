@@ -100,20 +100,61 @@ class database{
     }
   }
 
-  public function authenticate_user($uname,$pass){
+  public function authenticate_user($uname, $pass){
+    // hoe logt te user in? email of username of allebei? = username
+    // haal de user op uit account a.d.h.v. de username
+    // als database match, dan haal je het password (query with pdo)
+    // $hashed_password = password uit db (matchen met $pass)
+    // alle alle data overeen komt, dan kun je redirecten naar een interface
+    // stel geen match -> username and/or password incorrect message
 
-  }
-};
+    // echo hi $_SESSION['username']; htmlspecialchars()
+
+    // maak een statement object op basis van de mysql query en sla deze op in $stmt
+    $query = "SELECT password FROM account WHERE username = :username";
+    $stmt = $this->pdo->prepare($query);
+
+    // prepared statement object will be executed.
+    $stmt->execute(['username' => $uname]); //-> araay
+    $result = $stmt->fetch(); // returned een array
+
+    // haalt de hashed password value op uit de db dataset
+    $hashed_password = $result['password'];
+
+    $authenticated_user = false;
+
+    if ($uname && password_verify($pass, $hashed_password)){
+      $authenticated_user = true;
+        header('location: welcome.php'); // todo: fixme, create page
+        exit();
+    } else {
+        echo "invalid username and/or password";
+    }
+
+    if($authenticated_user){
+      // include date in title of log file -> error_log_8_10_2020.txt
+      error_log("datetime, ip address, username - has succesfully logged in",3, error_log.txt);// login datetime, ip address, usernameaction and whether its succesfull
+    }else{
+      error_log("Invalid login",3);
+    }
 
 
-
-
-
-
-
-
-
-
-
-
+  //   try{
+  //     // begin een database transaction
+  //     $this->pdo->beginTransaction();
+  //
+  //     $this->create_or_update_account($uname, $pass);
+  //
+  //     // commit
+  //     $this->pdo->commit();
+  //     exit();
+  //
+  //   }catch(Exception $e){
+  //     // undo db changes in geval van error
+  //     $this->pdo->rollback();
+  //     throw $e;
+  //
+  // }
+}
+}
  ?>
