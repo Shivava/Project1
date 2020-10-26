@@ -35,7 +35,7 @@ CREATE TABLE usertype(
     type VARCHAR(250) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME NOT NULL,
-    PRIMARY KEY(id),
+    PRIMARY KEY(id)
 );
 
 -- insert entry into table account

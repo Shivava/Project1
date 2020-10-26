@@ -4,11 +4,11 @@
 include 'database.php';
 include 'helperfunctions.php';
 
-if($_POST['submit']){
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit']) && !empty($_POST['submit'])){
   // maak een array met alle name attributes
   $fields = [
-    	"uname",
-      "pword"
+    	"username",
+      "pass"
   ];
 
 $obj = new HelperFunctions();
@@ -16,11 +16,11 @@ $no_error = $obj->has_provided_input_for_required_fields($fields);
 
   // in case of field values, proceed, execute insert
 if($no_error){
-  $username = $_POST['uname'];
-  $password = $_POST['pword'];
+  $username = $_POST['username'];
+  $pass = $_POST['pass'];
 
   $db = new database('localhost', 'root', '', 'project1', 'utf8');
-  $db->authenticate_user($username, $password);
+  $db->authenticate_user($username, $pass);
 }
 }
 
@@ -36,12 +36,12 @@ if($no_error){
 		<form id='login' action='login.php' method='post' accept-charset='UTF-8'>
 			<fieldset >
 				<legend>Login</legend>
-				<input type="text" name="uname" placeholder="Username" required/>
-				<input type="password" name="pword" placeholder="Password" required/>
+				<input type="text" name="username" placeholder="Username" required/>
+				<input type="password" name="pass" placeholder="Password" required/>
 				<input type='submit' name="submit" value='submit' />
 			</fieldset>
 		  	<p>
-		  		Not a member? <a href="register.php">Sign Up</a>
+		  		Not a member? <a href="register.php">register</a>
 		  	</p>
 		  	<p>
 		  		Reset Password? <a href="reset.php">Reset</a>
